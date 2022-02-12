@@ -1,0 +1,2 @@
+defmodule VintageNetWireguard do
+end
