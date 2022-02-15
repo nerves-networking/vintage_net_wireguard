@@ -13,6 +13,6 @@ https://wireguard.com for more info
 - [ ] Notes/cookbook for setting up Wireguard server
   - [ ] fly.io
   - [ ] Another service?
-- [ ] Parse wireguard peer configs
+- [X] Parse wireguard peer configs
 - [ ] Potentially support authentication via other routes (i.e. NervesKey)
 - [ ] Mechanism for registering a new peer with remote server
