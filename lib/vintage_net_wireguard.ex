@@ -28,9 +28,15 @@ defmodule VintageNetWireguard do
   @impl VintageNet.Technology
   def ioctl(_ifname, _cmd, _args), do: {:error, :unsupported}
 
+  @doc """
+  Path to wg executable
+  """
+  @spec wg() :: Path.t()
+  def wg(), do: Path.join(:code.priv_dir(:vintage_net_wireguard), "wg")
+
   defp up_cmds(ifname, config) do
     set_cmd =
-      {:run, "wg",
+      {:run, wg(),
        [
          "set",
          ifname,
