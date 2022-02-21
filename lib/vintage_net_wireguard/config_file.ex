@@ -12,7 +12,7 @@ defmodule VintageNetWireguard.ConfigFile do
       {:ok, file} ->
         file
         |> String.split("\n")
-        |> parse_lines(%{})
+        |> parse_lines(%{type: VintageNetWireguard})
 
       err ->
         err
