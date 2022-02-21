@@ -20,8 +20,10 @@ defmodule VintageNetWireguard.MixProject do
 
   defp deps do
     [
-      {:elixir_make, "~> 0.6", runtime: false},
-      {:vintage_net, "~> 0.11"}
+      {:vintage_net, "~> 0.11"},
+      {:temp, "~> 0.4"},
+      {:net_address, "~> 0.3"},
+      {:elixir_make, "~> 0.6", runtime: false}
     ]
   end
 end
