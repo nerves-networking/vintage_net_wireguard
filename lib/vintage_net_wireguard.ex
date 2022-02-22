@@ -5,10 +5,11 @@ defmodule VintageNetWireguard do
 
   @behaviour VintageNet.Technology
 
-  require Logger
+  import IP, only: [is_ip: 1, is_ipv4: 1, is_ipv6: 1]
 
   alias VintageNet.Interface.RawConfig
-  import IP, only: [is_ip: 1, is_ipv4: 1, is_ipv6: 1]
+
+  require Logger
 
   defguard is_non_empty_string(str) when is_binary(str) and str != ""
 
@@ -238,7 +239,7 @@ defmodule VintageNetWireguard do
   end
 
   defp set_peer(ifname, peer) do
-    with {:ok, tracker} = Temp.track(),
+    with {:ok, tracker} <- Temp.track(),
          peer_args = Enum.reduce(peer, [], &add_peer_arg/2),
          {_, 0} <- System.cmd(wg(), ["set", ifname | peer_args]) do
       _ = Temp.cleanup(tracker)
