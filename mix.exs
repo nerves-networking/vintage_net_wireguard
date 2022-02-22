@@ -25,7 +25,8 @@ defmodule VintageNetWireguard.MixProject do
       {:temp, "~> 0.4"},
       {:net_address, "~> 0.3"},
       {:elixir_make, "~> 0.6", runtime: false},
-      {:dialyxir, "~> 1.1", only: [:dev, :test], runtime: false}
+      {:dialyxir, "~> 1.1", only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.6", only: [:dev, :test], runtime: false}
     ]
   end
 
