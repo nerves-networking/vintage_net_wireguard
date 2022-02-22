@@ -12,10 +12,10 @@ interface. Below is a list of the expected configuration parameters
 which are referenced from [`wg(8)`](https://git.zx2c4.com/wireguard-tools/about/src/man/wg.8)
 and [`wg-quick(8)`](https://git.zx2c4.com/wireguard-tools/about/src/man/wg-quick.8):
 
-**Interface**
+### Interface
 
 | Key | `wg` name | Required? | Description |
-| :---: | :---: | :---: | :--- |
+| --- | --- | :---: | --- |
 | `:private_key` | `PrivateKey` | X | base64 private key for the interface registered with the server |
 | `:addresses` | `Address` | X | list of IP addresses for the connection to use (CIDR supported) |
 | `:listen_port` | `ListenPort` | | port for the connection. Randomly assigned if empty or `0` |
@@ -23,17 +23,16 @@ and [`wg-quick(8)`](https://git.zx2c4.com/wireguard-tools/about/src/man/wg-quick
 | `:dns` | `DNS` | | list of DNS IP's |
 | `:peers` | `[PEER]` | | list of peer configs (see below) |
 
-**Peer**
+### Peer
 
 | Key | `wg` name | Required? | Description |
-| :---: | :---: | :---: | :--- |
+| --- | --- | :---: | --- |
 | `:public_key` | `PublicKey` | X | base64 public key |
 | `:endpoint` | `Endpoint` | X | endpoint to the wireguard server which the peer attempts to connect |
 | `:allowed_ips` | `AllowedIps` | X | list of IP addresses for allowed incoming packets and outgoing packets directed to. Defaults to `["0.0.0.0/0", "::0"]` |
 | `:persistent_keepalive` | `PersistentKeepalive` | | optional integer seconds for sending an authenticated packet as a keepalive |
 
-
-### Using Wireguard Config Files
+## Using Wireguard Config Files
 
 Wireguard commonly uses `*.conf` configuration files to simplify the setup
 process and `VintageNetWireguard` provides a helper function to parse those
