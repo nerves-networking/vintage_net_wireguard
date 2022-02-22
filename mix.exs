@@ -8,7 +8,8 @@ defmodule VintageNetWireguard.MixProject do
       elixir: "~> 1.13",
       compilers: [:elixir_make | Mix.compilers()],
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      dialyzer: dialyzer()
     ]
   end
 
@@ -23,7 +24,14 @@ defmodule VintageNetWireguard.MixProject do
       {:vintage_net, "~> 0.11"},
       {:temp, "~> 0.4"},
       {:net_address, "~> 0.3"},
-      {:elixir_make, "~> 0.6", runtime: false}
+      {:elixir_make, "~> 0.6", runtime: false},
+      {:dialyxir, "~> 1.1", only: [:dev, :test], runtime: false}
+    ]
+  end
+
+  defp dialyzer() do
+    [
+      flags: [:race_conditions, :unmatched_returns, :error_handling, :underspecs]
     ]
   end
 end
