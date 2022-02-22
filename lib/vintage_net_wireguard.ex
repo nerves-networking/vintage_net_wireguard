@@ -200,6 +200,12 @@ defmodule VintageNetWireguard do
     end
   end
 
+  # TODO: ensure cleanup and fix this
+  # Temp specs say this should return :ok, but it actually returns
+  # a list paths. Need to suppress dialyzer until Temp is fixed
+  # or alternate cleanup is implemented
+  @dialyzer {:nowarn_function, set_wg_interface: 2}
+
   defp set_wg_interface(ifname, config) do
     with {:ok, tracker} <- Temp.track(),
          if_args = Enum.reduce(config, [], &add_if_arg/2),
@@ -235,7 +241,7 @@ defmodule VintageNetWireguard do
     with {:ok, tracker} = Temp.track(),
          peer_args = Enum.reduce(peer, [], &add_peer_arg/2),
          {_, 0} <- System.cmd(wg(), ["set", ifname | peer_args]) do
-      Temp.cleanup(tracker)
+      _ = Temp.cleanup(tracker)
       :ok
     else
       {err, s} ->
@@ -245,7 +251,7 @@ defmodule VintageNetWireguard do
         #{inspect(err)}
         """)
 
-        Temp.cleanup()
+        _ = Temp.cleanup()
 
         {:error, :non_zero_exit}
     end
