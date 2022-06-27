@@ -39,7 +39,7 @@ process and `VintageNetWireguard` provides a helper function to parse those
 config files into the expected format:
 
 ```elixir
-iex)> {:ok, config} = VintageNetWireguard.ConfigFile.parse("/path/to/wg0.conf")
+iex)> config = VintageNetWireguard.ConfigFile.parse("/path/to/wg0.conf")
 iex)> VintageNet.configure("wg0", config)
 ```
 <!--- DOC !--->
