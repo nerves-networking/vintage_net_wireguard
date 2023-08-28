@@ -263,7 +263,7 @@ defmodule VintageNetWireguard do
   end
 
   defp add_peer_arg({:allowed_ips, v}, acc) do
-    addrs = Enum.map_join(v, " ", &addr_subnet/1)
+    addrs = Enum.map_join(v, ",", &addr_subnet/1)
     ["allowed-ips", addrs | acc]
   end
 
