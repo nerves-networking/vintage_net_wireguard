@@ -86,7 +86,7 @@ defmodule VintageNetWireguard do
   defp normalize_fwmark(%{fwmark: fwmark} = config) when is_integer(fwmark), do: config
 
   defp normalize_fwmark(%{fwmark: fwmark} = config) do
-    Logger.warning("Ignoring invalid Wireguard FwMark: #{inspect(fwmark)}")
+    Logger.warning("[VintageNetWireguard] Ignoring invalid FwMark: #{inspect(fwmark)}")
     Map.delete(config, :fwmark)
   end
 
@@ -95,7 +95,7 @@ defmodule VintageNetWireguard do
   defp normalize_listen_port(%{listen_port: port} = config) when is_integer(port), do: config
 
   defp normalize_listen_port(%{listen_port: port} = config) do
-    Logger.warning("Ignoring invalid Wireguard ListenPort: #{inspect(port)}")
+    Logger.warning("[VintageNetWireguard] Ignoring invalid ListenPort: #{inspect(port)}")
     Map.delete(config, :listen_port)
   end
 
@@ -107,7 +107,7 @@ defmodule VintageNetWireguard do
   end
 
   defp normalize_dns(%{dns: dns} = config) do
-    Logger.warning("Ignoring invalid Wireguard DNS: #{inspect(dns)}")
+    Logger.warning("[VintageNetWireguard] Ignoring invalid DNS: #{inspect(dns)}")
     Map.delete(config, :dns)
   end
 
@@ -125,7 +125,10 @@ defmodule VintageNetWireguard do
   defp normalize_keepalive(%{persistent_keepalive: pk} = peer) when pk in 0..65535, do: peer
 
   defp normalize_keepalive(%{persistent_keepalive: pk} = peer) do
-    Logger.warning("Ignoring invalid Wireguard peer PersistentKeepalive: #{inspect(pk)}")
+    Logger.warning(
+      "[VintageNetWireguard] Ignoring invalid peer PersistentKeepalive: #{inspect(pk)}"
+    )
+
     Map.delete(peer, :persistent_keepalive)
   end
 
@@ -135,7 +138,7 @@ defmodule VintageNetWireguard do
     do: peer
 
   defp normalize_preshared_key(%{preshared_key: psk} = peer) do
-    Logger.warning("Ignoring invalid Wireguard peer PresharedKey: #{inspect(psk)}")
+    Logger.warning("[VintageNetWireguard] Ignoring invalid peer PresharedKey: #{inspect(psk)}")
     Map.delete(peer, :preshared_key)
   end
 
@@ -216,7 +219,7 @@ defmodule VintageNetWireguard do
     else
       err ->
         Temp.cleanup()
-        {:error, "Failed to set Wireguard interface - #{inspect(err)}"}
+        {:error, "[VintageNetWireguard] Failed to set interface - #{inspect(err)}"}
     end
   end
 
@@ -248,7 +251,7 @@ defmodule VintageNetWireguard do
     else
       {err, s} ->
         Logger.error("""
-        Nonzero exit setting peer: #{s}
+        [VintageNetWireguard] Nonzero exit setting peer: #{s}
 
         #{inspect(err)}
         """)
