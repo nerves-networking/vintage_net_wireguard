@@ -240,7 +240,8 @@ defmodule VintageNetWireguard do
 
   defp set_peer(ifname, peer) do
     with {:ok, tracker} <- Temp.track(),
-         peer_args = Enum.reduce(peer, [], &add_peer_arg/2),
+         # peer arg needs to be first
+         peer_args = ["peer", peer.public_key | Enum.reduce(peer, [], &add_peer_arg/2)],
          {_, 0} <- System.cmd(wg(), ["set", ifname | peer_args]) do
       _ = Temp.cleanup(tracker)
       :ok
@@ -271,7 +272,6 @@ defmodule VintageNetWireguard do
     ["preshared-key", path | acc]
   end
 
-  defp add_peer_arg({:public_key, v}, acc), do: ["peer", v | acc]
   defp add_peer_arg(_, acc), do: acc
 
   defp addr_subnet({ip, prefix_len}) do
