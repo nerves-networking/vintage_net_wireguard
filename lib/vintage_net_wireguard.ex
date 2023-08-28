@@ -195,7 +195,7 @@ defmodule VintageNetWireguard do
   end
 
   defp maybe_add_interface(ifname) do
-    case System.cmd("ip", ["link", "show", ifname]) do
+    case System.cmd("ip", ["link", "show", ifname], stderr_to_stdout: true) do
       {_, 0} -> []
       _ -> {:run_ignore_errors, "ip", ["link", "add", ifname, "type", "wireguard"]}
     end
@@ -210,7 +210,7 @@ defmodule VintageNetWireguard do
   defp set_wg_interface(ifname, config) do
     with {:ok, tracker} <- Temp.track(),
          if_args = Enum.reduce(config, [], &add_if_arg/2),
-         {_, 0} <- System.cmd(wg(), ["set", ifname | if_args]),
+         {_, 0} <- System.cmd(wg(), ["set", ifname | if_args], stderr_to_stdout: true),
          [_ | _] <- Temp.cleanup(tracker) do
       :ok
     else
@@ -242,7 +242,7 @@ defmodule VintageNetWireguard do
     with {:ok, tracker} <- Temp.track(),
          # peer arg needs to be first
          peer_args = ["peer", peer.public_key | Enum.reduce(peer, [], &add_peer_arg/2)],
-         {_, 0} <- System.cmd(wg(), ["set", ifname | peer_args]) do
+         {_, 0} <- System.cmd(wg(), ["set", ifname | peer_args], stderr_to_stdout: true) do
       _ = Temp.cleanup(tracker)
       :ok
     else
