@@ -29,7 +29,7 @@ BUILD  = $(MIX_APP_PATH)/obj
 TOP := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
 DL = $(TOP)/dl
 
-TOOLS_VER = v1.0.20210914
+TOOLS_VER = 13f4ac4cb74b5a833fa7f825ba785b1e5774e84f
 TOOLS = $(DL)/wireguard-tools-$(TOOLS_VER)
 
 # Disable unneeded Wireguard features
@@ -59,7 +59,8 @@ $(PREFIX) $(BUILD) $(DL):
 
 $(TOOLS): $(DL)
 	@echo "  DL      $(notdir $@)"
-	git clone --branch $(TOOLS_VER) https://git.zx2c4.com/wireguard-tools $@ 2>/dev/null
+	git clone https://git.zx2c4.com/wireguard-tools $@ 2>/dev/null
+	git -C $@ checkout $(TOOLS_VER) 2>/dev/null
 
 mix_clean:
 	rm -rf $(BUILD) $(PREFIX)
