@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2022 Jon Carstens
+# SPDX-FileCopyrightText: 2023 Gus Workman
+#
+# SPDX-License-Identifier: Apache-2.0
+#
 defmodule VintageNetWireguard do
   @moduledoc File.read!("README.md")
              |> String.split("<!--- DOC !--->")

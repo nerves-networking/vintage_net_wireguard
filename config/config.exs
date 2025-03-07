@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2022 Jon Carstens
+#
+# SPDX-License-Identifier: Apache-2.0
+#
 import Config
 
 # Overrides for unit tests:

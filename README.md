@@ -1,5 +1,10 @@
 # VintageNetWireguard
 
+[![Hex version](https://img.shields.io/hexpm/v/vintage_net_wireguard.svg "Hex version")](https://hex.pm/packages/vintage_net_wireguard)
+[![API docs](https://img.shields.io/hexpm/v/vintage_net_wireguard.svg?label=hexdocs "API docs")](https://hexdocs.pm/vintage_net_wireguard/VintageNetWireguard.html)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/nerves-networking/vintage_net_wireguard/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/nerves-networking/vintage_net_wireguard/tree/main)
+[![REUSE status](https://api.reuse.software/badge/github.com/nerves-networking/vintage_net_wireguard)](https://api.reuse.software/info/github.com/nerves-networking/vintage_net_wireguard)
+
 **Experimental**
 
 An attempt to support Wireguard VPN peer connections on Nerves devices. See

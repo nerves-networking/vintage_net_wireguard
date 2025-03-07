@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2022 Jon Carstens
+#
+# SPDX-License-Identifier: Apache-2.0
+#
 defmodule VintageNetWireguardTest do
   use ExUnit.Case
   doctest VintageNetWireguard
