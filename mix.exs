@@ -8,7 +8,7 @@ defmodule VintageNetWireguard.MixProject do
     [
       app: :vintage_net_wireguard,
       version: @version,
-      elixir: "~> 1.11",
+      elixir: "~> 1.15",
       compilers: [:elixir_make | Mix.compilers()],
       make_targets: ["all"],
       make_clean: ["mix_clean"],
